@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Loader, Segment, Table } from 'semantic-ui-react'
+import { Grid, Loader, Segment } from 'semantic-ui-react'
 
 
 

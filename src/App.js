@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DataTable from './Components/DataTable/DataTable'
 import ItemsPage from './Components/ItemsPage'
 import LandingPage from './Components/LandingPage'
 import MenuBar from './Components/MenuBar'

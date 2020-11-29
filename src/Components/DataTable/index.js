@@ -9,7 +9,7 @@ const DataTable = ( { pageData, manufacturersData  }) => {
   const DataGridRows = ({ index, style ,data }) => {
     return  (
       <Grid celled textAlign='center' style={{ ...style, margin:0 , backgroundColor: index % 2? 'whitesmoke':'' }}>
-        <GridRow product={data[index]} manufacturers={manufacturersData} />
+        <GridRow product={data[index]} manufacturers={manufacturersData} style={style}/>
       </Grid>)
   }
 
@@ -35,7 +35,7 @@ const DataTable = ( { pageData, manufacturersData  }) => {
         < List
           height={window.innerHeight-150}
           itemCount={pageData.length}
-          itemSize={55}
+          itemSize={40}
           width={window.innerWidth}
           itemData= {pageData}
         >

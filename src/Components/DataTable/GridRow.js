@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { Grid, Label } from 'semantic-ui-react'
 import AvailabilityColumn from './AvailabilityColumn'
 
-const GridRow = ({ product ,manufacturers }) => {
+const GridRow = ({ product ,manufacturers ,style }) => {
   const [availbility,setAvailability] = useState('')
 
   return (
     <Grid.Row columns='5'
       style={
         /*Set background color based on availability data*/
-        {
+        { height: style.height,
           backgroundColor:
         availbility.includes('LESSTHAN')?
           'lightyellow':

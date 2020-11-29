@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import DataTable from './Components/DataTable'
+import DataTable from './Components/DataTable/DataTable'
+import ItemsPage from './Components/ItemsPage'
 import LandingPage from './Components/LandingPage'
 import MenuBar from './Components/MenuBar'
 
@@ -12,7 +13,7 @@ const App = () => {
       :
       <>
         <MenuBar  activePage= {activePage} setActivePage={setActivePage}></MenuBar>
-        <DataTable  activePage= {activePage} />
+        <ItemsPage  item= {activePage} />
       </>
   )
 

@@ -1,6 +1,4 @@
 /* eslint-disable no-case-declarations */
-import React, { useReducer } from 'react'
-
 export const SET_MANUFACTURER_DATA = 'SET_MANUFACTURER_DATA'
 export const SET_MANUFACTURER_DATA_ERROR = 'SET_MANUFACTURER_DATA_ERROR'
 export const SET_MANUFACTURER_FETCHING ='SET_MANUFACTURER_FETCHING'

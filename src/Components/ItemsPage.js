@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { Dimmer, Loader, Segment } from 'semantic-ui-react'
 import ManufacturerReducer, { SET_MANUFACTURER_DATA, SET_MANUFACTURER_DATA_ERROR ,SET_MANUFACTURER_FETCHING } from '../Reducers/ManufacturerReducer'
 import ProductReducer, { SET_PRODUCT , SET_PRODUCT_FETCHING, SET_PRODUCT_ERROR } from '../Reducers/ProductsReducer'
 import { getAvailablilityByManufacturer, getProductsByType } from '../services'

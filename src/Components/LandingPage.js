@@ -8,9 +8,9 @@ const LandingPage = ({ setActivePage }) => {
 
     <Segment style={{ textAlign:'center' }}>
       <Header as ='h2'>Select Product Category </Header>
-      <Button primary onClick= { () => setActivePage('Jackets')}>Jackets</Button>
-      <Button primary onClick= { () => setActivePage('Shirts')}>Shirts</Button>
-      <Button primary onClick= { () => setActivePage('Accessories')}>Accessories</Button>
+      <Button primary onClick= { () => setActivePage('gloves')}>Gloves</Button>
+      <Button primary onClick= { () => setActivePage('facemasks')}>Facemasks</Button>
+      <Button primary onClick= { () => setActivePage('beanies')}>Beanies</Button>
     </Segment>
 
   )

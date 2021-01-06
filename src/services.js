@@ -6,7 +6,7 @@ export const getProductsByType = async( category,errorMode) => {
   if(errorMode){
     config.headers ={ 'x-force-error-mode':'all' }
   }
-  const response = await axios.get(`${baseUrl}/products/${category}`,config)
+  const response = await axios.get(`${baseUrl}/v2/products/${category}`,config)
   return response.data
 }
 
@@ -15,7 +15,7 @@ export const getAvailablilityByManufacturer = async( manufacturer,errorMode) => 
   if(errorMode){
     config.headers ={ 'x-force-error-mode':'all' }
   }
-  const response = await axios.get(`${baseUrl}/availability/${manufacturer}`,config)
+  const response = await axios.get(`${baseUrl}/v2/availability/${manufacturer}`,config)
   return response.data
 }
 

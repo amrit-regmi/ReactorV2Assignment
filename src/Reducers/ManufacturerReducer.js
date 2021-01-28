@@ -1,28 +1,18 @@
 /* eslint-disable no-case-declarations */
-import React, { useReducer } from 'react'
-
 export const SET_MANUFACTURER_DATA = 'SET_MANUFACTURER_DATA'
 export const SET_MANUFACTURER_DATA_ERROR = 'SET_MANUFACTURER_DATA_ERROR'
 export const SET_MANUFACTURER_FETCHING ='SET_MANUFACTURER_FETCHING'
 
-const ManufacturerReducer = (state , action ) => {
+const manufacturerReducer = (state , action ) => {
   switch(action.type){
   case SET_MANUFACTURER_DATA:
-    return { ...state, ...action.payload }
+    return { ...state, manufacturers: { ...state.manufacturers,...action.payload } }
 
   case SET_MANUFACTURER_FETCHING:
-    const status = state[action.payload] && state[action.payload].data?'refreshing':'loading'
-    return { ... state, [action.payload]:{ ...state[action.payload],status }  }
+    return { ... state, manufacturers : { ...state.manufacturers,[action.payload]:{ ...state.manufacturers[action.payload],status :'loading' } }  }
 
-  case SET_MANUFACTURER_DATA_ERROR:
-    return { ...state,
-      [action.payload]: {
-        error: 'Failed to load manufacutrer data'
-      }
-    }
-  case 'default':
+  default:
     return state
   }
 }
-
-export default ManufacturerReducer
+export default manufacturerReducer

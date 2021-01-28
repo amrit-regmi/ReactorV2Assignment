@@ -44,5 +44,7 @@
   },
   "devDependencies": {
     "eslint": "^7.14.0"
-  }
+  },
+  
+  "proxy":"https://bad-api-assignment.reaktor.com"
 }

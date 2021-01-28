@@ -1,10 +1,15 @@
 import React from 'react'
 import { Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { useStore } from '../helpers'
 
-const StatusLoader = ({ productStatus ,manufacturersState }) => {
+const StatusLoader = ({ productCategory }) => {
 
+  const [state,] = useStore()
 
-  if(productStatus === 'loading') {
+  const product = state.products[productCategory]
+
+  /**Main Loader on first load of category */
+  if(product.status === 'loading' && !product.data) {
     return (
       <Segment
         textAlign='center'
@@ -17,14 +22,39 @@ const StatusLoader = ({ productStatus ,manufacturersState }) => {
     )
   }
 
-  if (productStatus === 'refreshing' || Object.keys(manufacturersState).some(manufacturer => manufacturersState[manufacturer].status )) {
+  /**If the product data is being refetched */
+  if (product.data && product.status === 'loading' ) {
     return (
       <Segment basic>
         <Dimmer active inverted>
-          <Loader size='tiny'inverted> Updating . . .</Loader>
+          <Loader size='tiny'inverted> Refreshing Product . . .</Loader>
         </Dimmer>
       </Segment>
     )
+  }
+
+
+  /**If the manufacturer data is being loaded first time */
+  if(Object.keys(state.manufacturers).some(manufacturer => state.manufacturers[manufacturer] && state.manufacturers[manufacturer].status === 'loading' && !state.manufacturers[manufacturer].data )){
+    return (
+      <Segment basic>
+        <Dimmer active inverted>
+          <Loader size='tiny'inverted> Loading availability data . . .</Loader>
+        </Dimmer>
+      </Segment>
+    )
+
+  }
+
+  if(Object.keys(state.manufacturers).some(manufacturer => state.manufacturers[manufacturer].status=== 'loading' && state.manufacturers[manufacturer].data)){
+    return (
+      <Segment basic>
+        <Dimmer active inverted>
+          <Loader size='tiny'inverted> Updating availability data . . .</Loader>
+        </Dimmer>
+      </Segment>
+    )
+
   }
 
   return null

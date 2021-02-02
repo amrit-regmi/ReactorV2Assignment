@@ -1,14 +1,15 @@
-import { ProductType, Store } from "../../types"
+import { ProductType, Store } from '../../types'
 
 /* eslint-disable no-case-declarations */
 export const SET_PRODUCT = 'SET_PRODUCT'
 export const SET_PRODUCT_FETCHING ='SET_PRODUCT_FETCHING'
 export const SET_PRODUCT_ERROR = 'SET_PRODUCT_ERROR'
 
-export type ProductAction = 
+export type ProductAction =
   | {
       type: 'SET_PRODUCT',
       payload:{
+        // eslint-disable-next-line no-unused-vars
         [productType in ProductType]?:{
           data: any,
           lastRetrieved: number,
@@ -21,7 +22,7 @@ export type ProductAction =
       payload: ProductType
     }
 
-const productReducer = (state:Store , action : ProductAction ) : Store=> {
+const productReducer = (state:Store , action : ProductAction ) : Store => {
   switch(action.type){
   case SET_PRODUCT:
     return { ...state,products: { ...state.products,...action.payload } }

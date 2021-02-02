@@ -10,11 +10,11 @@ const App : FC = () => {
     <StoreProvider>
       {
         activePage === 'landingPage' ?
-          <LandingPage setActivePage={setActivePage}> </LandingPage>
+          <LandingPage setActivePage={ setActivePage }> </LandingPage>
           :
           <>
-            <MenuBar  activePage= {activePage} setActivePage={setActivePage}></MenuBar>
-            <ItemsPage  productCategory= {activePage} />
+            <MenuBar  activePage= { activePage } setActivePage={ setActivePage }></MenuBar>
+            <ItemsPage  productCategory= { activePage } />
           </>}
     </StoreProvider>
   )

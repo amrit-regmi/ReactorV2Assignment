@@ -1,24 +1,25 @@
-import React, { useEffect } from 'react'
-import { useStore, getDataFetchTimer, useDataFetcher } from '../helpers'
-import  { CLEAR_ALL_ERROR } from '../Reducers/errorReducer'
+import React, {  useEffect,FC } from 'react'
+import { useStore, getDataFetchTimer, useDataFetcher } from '../Services/helpers'
+import  { CLEAR_ALL_ERROR } from '../Store/Reducers/errorReducer'
+import { ProductType } from '../types'
 import DataTable from './DataTable'
 import ErrorNotification from './ErrorNotification'
 import StatusLoader from './StatusLoader'
 
-const ItemsPage = ({ productCategory }) => {
+const ItemsPage : FC <{productCategory: ProductType}> = ({ productCategory }) => {
   const [state,dispatch] = useStore()
   const { fetchManufacturer,fetchProducts } = useDataFetcher()
 
   /**Side Effect on Item change  */
   useEffect( () => {
-    let timeOuts = [] /** cache timeouts for each request is stored in array so each can be cleared when components unmounts */
-    const dataFetchTimer =  getDataFetchTimer (state.products[productCategory].lastRetrieved)// Time remaining before data is fetched
-    timeOuts.push( setTimeout( () => fetchProducts(productCategory), dataFetchTimer))
+    const timeOuts: number[] = [] /** cache timeouts for each request is stored in array so each can be cleared when components unmounts */
+    const dataFetchTimer: number =  getDataFetchTimer (state.products[productCategory].lastRetrieved)// Time remaining before data is fetched
+    timeOuts.push( window.setTimeout( () => fetchProducts(productCategory), dataFetchTimer))
 
     if (state.products[productCategory].data) {
     /**For each product listed on page get manufacturer and add to Set */
-      const manufacturerList = new Set()
-      state.products[productCategory].data.map( product => {
+      const manufacturerList: Set<string> = new Set()
+      state.products[productCategory].data.map( (product: { manufacturer: string }) => {
         manufacturerList.add(product.manufacturer)
       })
 
@@ -26,7 +27,7 @@ const ItemsPage = ({ productCategory }) => {
       manufacturerList.forEach( manufacturer =>  {
         const manufacturerCacheTimer = getDataFetchTimer ( state.manufacturers[manufacturer] && state.manufacturers[manufacturer].lastRetrieved)
         //If the cache has expired or errror fetch immediately (timeoutDuration will be 0) else will wait until cache expires ( timeoutDuration will be time until cache expires )
-        timeOuts.push(setTimeout (() => fetchManufacturer(manufacturer),manufacturerCacheTimer))
+        timeOuts.push( window.setTimeout (() => fetchManufacturer(manufacturer),manufacturerCacheTimer))
       })
     }
 

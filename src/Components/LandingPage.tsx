@@ -1,9 +1,7 @@
-import React, {  } from 'react'
+import React, { FC } from 'react'
 import { Button, Header, Segment } from 'semantic-ui-react'
 
-const LandingPage = ({ setActivePage }) => {
-
-
+const LandingPage:FC<{ setActivePage:Function }> = ({ setActivePage }) => {
   return (
 
     <Segment style={{ textAlign:'center' }}>

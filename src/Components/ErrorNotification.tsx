@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import { Button, Header, Icon, Label, Message } from 'semantic-ui-react'
-import { useDataFetcher,useStore } from '../helpers'
-import { CLEAR_ERROR } from '../Reducers/errorReducer'
+import { useDataFetcher,useStore } from '../Services/helpers'
+import { CLEAR_ERROR } from '../Store/Reducers/errorReducer'
+import { DataType, ProductType } from '../types'
 
 const ErrorNotification = () => {
   const [state,dispatch] = useStore()
@@ -14,13 +15,15 @@ const ErrorNotification = () => {
    * @param {String} type manufacturer/product
    * @param {String} id manufacturer/product name
    */
-  const retryFetch = (type,id) => {
-    if(type === 'manufacturer'){
+  const retryFetch = (type: DataType,id: string) => {
+
+    if(type === 'manufacturers'){
       fetchManufacturer(id)
     }
 
-    if( type === 'product'){
-      fetchProducts(id)
+    if( type === 'products'){
+      const productType  =  id as ProductType
+      fetchProducts(productType)
     }
 
     dispatch ({

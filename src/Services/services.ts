@@ -1,6 +1,9 @@
 import axios from 'axios'
-export const getProductsByType = async( category,errorMode) => {
-  const config={}
+import { ProductType } from '../types'
+
+const config:{headers?:{}}={}
+
+export const getProductsByType = async( category: ProductType,errorMode: boolean): Promise<any> => {
   if(errorMode){
     config.headers ={ 'x-force-error-mode':'all' }
   }
@@ -9,8 +12,7 @@ export const getProductsByType = async( category,errorMode) => {
   return response.data
 }
 
-export const getAvailablilityByManufacturer = async( manufacturer,errorMode) => {
-  const config={}
+export const getAvailablilityByManufacturer = async( manufacturer: string,errorMode: boolean): Promise<any>  => {
   if(errorMode){
     config.headers ={ 'x-force-error-mode':'all' }
   }

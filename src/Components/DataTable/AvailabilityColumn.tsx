@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Grid, Loader, Segment } from 'semantic-ui-react'
 
-const AvailabilityColumn = ({ manufacturer,availability }) => {
+const AvailabilityColumn: FC <{manufacturer: any, availability:string}>= ({ manufacturer,availability }) => {
 
   if(manufacturer && manufacturer.status === 'loading'){
     return(
@@ -26,7 +26,7 @@ const AvailabilityColumn = ({ manufacturer,availability }) => {
 
       {
         availability && availability.includes('LESSTHAN') &&
-        <span style={{ color:'orange' }}>Less than {availability.match(/\d+/)[0]}</span>
+        <span style={{ color:'orange' }}>Less than {availability.match(/\d+/)}</span>
       }
       {
         availability && availability.includes('INSTOCK') &&

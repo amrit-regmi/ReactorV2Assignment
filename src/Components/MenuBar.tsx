@@ -1,6 +1,13 @@
 import React from 'react'
 import { Menu, MenuItem } from 'semantic-ui-react'
-const MenuBar = ({ setActivePage, activePage }) => {
+import { ProductType } from '../types'
+
+type MenuBarProps = {
+  setActivePage: Function,
+  activePage:ProductType
+}
+
+const MenuBar: React.FC<MenuBarProps> = ({ setActivePage, activePage }) => {
   return(
     <Menu color='blue' inverted>
       <MenuItem active={activePage === 'gloves'} onClick={() => setActivePage('gloves')}>Gloves</MenuItem>

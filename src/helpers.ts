@@ -3,9 +3,10 @@ import {  SET_MANUFACTURER_ERROR, SET_PRODUCT_ERROR } from './Reducers/errorRedu
 import { SET_MANUFACTURER_DATA, SET_MANUFACTURER_FETCHING } from './Reducers/manufacturerReducer'
 import { SET_PRODUCT, SET_PRODUCT_FETCHING } from './Reducers/productsReducer'
 import { getAvailablilityByManufacturer, getProductsByType } from './services'
-import { StoreContext } from './StoreProvider'
+import { StoreContext, ProviderValue } from './StoreProvider'
+import { ProductType } from './types'
 
-export const useStore = () => useContext(StoreContext)
+export const useStore = ():ProviderValue => useContext(StoreContext)
 
 /**
 *Function to check if the data needs to be refetched,
@@ -13,26 +14,28 @@ export const useStore = () => useContext(StoreContext)
 * @return {Int} remaining time unitl data is stale if data is not stale
 * @return {bool} if data is stale
 */
-export  const getDataFetchTimer = (fetchedTime,cacheDuration = 300000) => {
+export  const getDataFetchTimer = (fetchedTime:number | null, cacheDuration:number = 300000):number => {
   if(!fetchedTime){
     return 0
   }
+
   const currentTime = Date.now()
-  if(parseInt(fetchedTime) + parseInt(cacheDuration) <=  currentTime){
+  const computedTime = fetchedTime.valueOf() + cacheDuration
+  if(computedTime <=  currentTime){ //Cache is expired
     return 0
   }
-  return (parseInt(fetchedTime)+parseInt(cacheDuration)-currentTime)
+  return (computedTime-currentTime)//Time until cache expires
 }
 
 
 /**Hook to fetch product and manufacturer data */
-export const useDataFetcher = () => {
+export const useDataFetcher = ():{ fetchProducts:Function, fetchManufacturer:Function } => {
   const[,dispatch] = useStore()
 
   /**Function to get products
    * @param {String} productCategory product category
   */
-  const fetchProducts = async productCategory => {
+  const fetchProducts = async (productCategory:ProductType):Promise<void> => {
     try {
       dispatch({
         type: SET_PRODUCT_FETCHING,
@@ -66,7 +69,7 @@ export const useDataFetcher = () => {
   /**Function to get product availablity
    * @param {String} manufacturer product manufacturer name
   */
-  const fetchManufacturer = async (manufacturer) => {
+  const fetchManufacturer = async (manufacturer:string):Promise<void> => {
     try{
 
       dispatch({
@@ -111,5 +114,5 @@ export const useDataFetcher = () => {
     }
   }
 
-  return { fetchProducts, fetchManufacturer }
+  return  { fetchProducts, fetchManufacturer }
 }

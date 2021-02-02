@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Dimmer, Loader, Segment } from 'semantic-ui-react'
 import { useStore } from '../helpers'
+import { ProductType } from '../types'
 
-const StatusLoader = ({ productCategory }) => {
+const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) => {
 
   const [state,] = useStore()
 

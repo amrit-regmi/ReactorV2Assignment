@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import {  SET_MANUFACTURER_ERROR, SET_PRODUCT_ERROR } from './Reducers/errorReducer'
-import { SET_MANUFACTURER_DATA, SET_MANUFACTURER_FETCHING } from './Reducers/manufacturerReducer'
-import { SET_PRODUCT, SET_PRODUCT_FETCHING } from './Reducers/productsReducer'
+import {  SET_MANUFACTURER_ERROR, SET_PRODUCT_ERROR } from '../Store/Reducers/errorReducer'
+import { SET_MANUFACTURER_DATA, SET_MANUFACTURER_FETCHING } from '../Store/Reducers/manufacturerReducer'
+import { SET_PRODUCT, SET_PRODUCT_FETCHING } from '../Store/Reducers/productsReducer'
 import { getAvailablilityByManufacturer, getProductsByType } from './services'
-import { StoreContext, ProviderValue } from './StoreProvider'
-import { ProductType } from './types'
+import { StoreContext, ProviderValue } from '../Store/StoreProvider'
+import { ProductType } from '../types'
 
 export const useStore = ():ProviderValue => useContext(StoreContext)
 
@@ -42,7 +42,7 @@ export const useDataFetcher = ():{ fetchProducts:Function, fetchManufacturer:Fun
         payload: productCategory
       })
 
-      const productResult = await getProductsByType( productCategory)
+      const productResult = await getProductsByType( productCategory,false)
       dispatch({
         type: SET_PRODUCT,
         payload:{
@@ -77,7 +77,7 @@ export const useDataFetcher = ():{ fetchProducts:Function, fetchManufacturer:Fun
         payload: manufacturer
       })
 
-      const availabilityData =   await  getAvailablilityByManufacturer(manufacturer)
+      const availabilityData =   await  getAvailablilityByManufacturer(manufacturer,false)
 
       /**Check If the received data is invalid*/
       if(availabilityData.code !== 200 || !Array.isArray(availabilityData.response)){

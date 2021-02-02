@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, FC, Dispatch, useMemo } from 'react'
+import React, { useReducer, createContext, FC, Dispatch, useMemo, useContext } from 'react'
 import errors from './Reducers/errorReducer'
 import manufacturers from './Reducers/manufacturerReducer'
 import products from './Reducers/productsReducer'
@@ -38,8 +38,7 @@ const combineReducers = (...reducers:Function[]) =>
     return state
   }
 
-
-type ProviderValue = [Store, Dispatch<DispatchActions>]
+export type ProviderValue = [Store, Dispatch<DispatchActions>]
 
 export const StoreProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer ( combineReducers (   errors,products,manufacturers   ), initialState)
@@ -50,3 +49,5 @@ export const StoreProvider: FC = ({ children }) => {
     </StoreContext.Provider>
   )
 }
+
+export const useStore = () => useContext(StoreContext)

@@ -1,4 +1,4 @@
-import { Store } from '../types'
+import { Store } from '../../types'
 
 /* eslint-disable no-case-declarations */
 export const SET_MANUFACTURER_DATA = 'SET_MANUFACTURER_DATA'

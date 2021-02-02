@@ -1,4 +1,4 @@
-import { ProductType, Store } from '../types'
+import { ProductType, Store } from '../../types'
 
 export const SET_PRODUCT_ERROR = 'SET_PRODUCT_ERROR'
 export const SET_MANUFACTURER_ERROR = 'SET_MANUFACTURER_ERROR'

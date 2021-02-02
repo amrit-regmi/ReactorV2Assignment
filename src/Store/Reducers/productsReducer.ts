@@ -1,4 +1,4 @@
-import { ProductType, Store } from "../types"
+import { ProductType, Store } from "../../types"
 
 /* eslint-disable no-case-declarations */
 export const SET_PRODUCT = 'SET_PRODUCT'

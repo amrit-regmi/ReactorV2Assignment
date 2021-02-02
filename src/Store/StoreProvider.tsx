@@ -2,7 +2,7 @@ import React, { useReducer, createContext, FC, Dispatch, useMemo, useContext } f
 import errors from './Reducers/errorReducer'
 import manufacturers from './Reducers/manufacturerReducer'
 import products from './Reducers/productsReducer'
-import { DispatchActions, Store } from './types'
+import { DispatchActions, Store } from '../types'
 
 const initialState = {
   products:{

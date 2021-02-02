@@ -11,7 +11,7 @@ export type ManufacturerAction =
       payload:{
         [manufacturer:string]:{
           data: any,
-          lastRetrieved: Date,
+          lastRetrieved: number,
           status: 'fetched'
         }
       }

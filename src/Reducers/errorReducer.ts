@@ -34,13 +34,13 @@ const errorReducer = (state:Store , action : ErrorAction ) : Store => {
   case SET_PRODUCT_ERROR:
     return { ...state,
       products:{ ...state.products,[action.payload.id]:{ status : 'error' } },
-      errors: [...state.errors,{ ...action.payload,type:'product' }]
+      errors: [...state.errors,{ ...action.payload,type:'products' }]
     }
 
   case SET_MANUFACTURER_ERROR:
     return { ...state,
       manufacturers:{ ...state.manufacturers,[action.payload.id]:{ ...state.manufacturers[action.payload.id],status : 'error' } },
-      errors: [...state.errors,{ ...action.payload,type:'manufacturer' }]
+      errors: [...state.errors,{ ...action.payload,type:'manufacturers' }]
     }
 
   case CLEAR_ERROR:

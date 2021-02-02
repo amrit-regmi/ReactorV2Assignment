@@ -1,6 +1,6 @@
-import { ErrorAction } from "./Reducers/errorReducer"
-import { ManufacturerAction } from "./Reducers/manufacturerReducer"
-import { ProductAction } from "./Reducers/productsReducer"
+import { ErrorAction } from "./Store/Reducers/errorReducer"
+import { ManufacturerAction } from "./Store/Reducers/manufacturerReducer"
+import { ProductAction } from "./Store/Reducers/productsReducer"
 
 export type ProductType = 'beanies' | 'gloves' | 'facemasks'
 

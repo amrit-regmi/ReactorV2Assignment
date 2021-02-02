@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Dimmer, Loader, Segment } from 'semantic-ui-react'
-import { useStore } from '../helpers'
+import { useStore } from '../Services/helpers'
 import { ProductType } from '../types'
 
 const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) => {
@@ -10,11 +10,11 @@ const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) 
   const product = state.products[productCategory]
 
   /**Main Loader on first load of category */
-  if(product.status === 'loading' && !product.data) {
+  if(product.status === 'loading' && !product.data.length) {
     return (
       <Segment
         textAlign='center'
-        style={{ minHeight: 300, padding: '1em 0em' }}
+        style={ { minHeight: 300, padding: '1em 0em' } }
         vertical>
         <Dimmer active inverted>
           <Loader size='big'inverted>Loading </Loader>
@@ -24,7 +24,7 @@ const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) 
   }
 
   /**If the product data is being refetched */
-  if (product.data && product.status === 'loading' ) {
+  if (product.data.length > 0 && product.status === 'loading' ) {
     return (
       <Segment basic>
         <Dimmer active inverted>

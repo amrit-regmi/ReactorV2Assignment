@@ -1,6 +1,6 @@
 import React, {  useEffect,FC } from 'react'
-import { useStore, getDataFetchTimer, useDataFetcher } from '../helpers'
-import  { CLEAR_ALL_ERROR } from '../Reducers/errorReducer'
+import { useStore, getDataFetchTimer, useDataFetcher } from '../Services/helpers'
+import  { CLEAR_ALL_ERROR } from '../Store/Reducers/errorReducer'
 import { ProductType } from '../types'
 import DataTable from './DataTable'
 import ErrorNotification from './ErrorNotification'

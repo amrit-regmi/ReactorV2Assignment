@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Button, Header, Icon, Label, Message } from 'semantic-ui-react'
-import { useDataFetcher,useStore } from '../helpers'
-import { CLEAR_ERROR } from '../Reducers/errorReducer'
+import { useDataFetcher,useStore } from '../Services/helpers'
+import { CLEAR_ERROR } from '../Store/Reducers/errorReducer'
 import { DataType, ProductType } from '../types'
 
 const ErrorNotification = () => {

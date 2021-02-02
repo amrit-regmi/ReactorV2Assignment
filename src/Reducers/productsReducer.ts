@@ -9,9 +9,9 @@ export type ProductAction =
   | {
       type: 'SET_PRODUCT',
       payload:{
-        [productType in ProductType]:{
+        [productType in ProductType]?:{
           data: any,
-          lastRetrieved: Date,
+          lastRetrieved: number,
           status:'fetched'
         }
       }

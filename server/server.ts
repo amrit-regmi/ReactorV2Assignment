@@ -24,7 +24,6 @@ app.get('/v2/*', async (req, res) => {
 })
 
 app.get('*', (req, res) => {
-  console.log('here'+req.originalUrl)
   res.sendFile(path.join(buildPath,'index.html'))
 })
 

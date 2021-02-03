@@ -1,3 +1,19 @@
+# Assignment 2021 for juinor Dev Position at Reaktor 
+
+## Task
+Client is a clothing brand that is looking for a simple web app to use in their warehouses. To do their work efficiently, the warehouse workers need a fast and simple listing page per product category, where they can check simple product and availability information from a single UI. There are three product categories they are interested in for now: gloves, facemasks, and beanies. One requirement is to be easily able to switch between product categories quickly. The client does not have a ready-made API for this purpose. Instead, they have two different legacy APIs that combined can provide the needed information. The legacy APIs are on critical-maintenance-only mode, and thus further changes to them are not possible. The client knows the APIs are not excellent, but they are asking you to work around any issues in the APIs in your new application. Both APIs have an internal cache of about 5 minutes.
+
+#### Build with react/typescript/express
+I improved upon the code from assignment 2020 based on the feedback provided. I also tried to use typescript this time.
+The code first calls the product Api and stores the manufacturer name for each productItem on set ( instead of hardcoding manufacturers name, I assumed that there might be many and different manufacturers for each product ), then iterates and calls the manufacturer Api.
+Global store is used as single source of truth. 
+Api calls are timed every 5 minutes and last retrived time is stored. If the data already exists for the given api call and api cache has not expired, data is retrived from store and api call is postponed until cache expires for that call or cancelled if no longer relevent. 
+Api Errors are displayed as notification and can retry call from the respective notification button.
+Windowing with react-window is used for better page loading performance.
+The Api has cors disabled so the application is served via express server through which the api request are proxied to bypass Cors limitation. 
+
+#### Link https://warehouseapp-v2.herokuapp.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

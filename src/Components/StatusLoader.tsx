@@ -9,8 +9,12 @@ const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) 
 
   const product = state.products[productCategory]
 
+  if(product.status === 'error'){
+    return null
+  }
+
   /**Main Loader on first load of category */
-  if(product.status === 'loading' && !product.data.length) {
+  if(product.status === 'loading' && product.data && !product.data.length) {
     return (
       <Segment
         textAlign='center'
@@ -24,7 +28,7 @@ const StatusLoader: FC <{productCategory: ProductType}> = ({ productCategory }) 
   }
 
   /**If the product data is being refetched */
-  if (product.data.length > 0 && product.status === 'loading' ) {
+  if (product.data && product.data.length > 0 && product.status === 'loading' ) {
     return (
       <Segment basic>
         <Dimmer active inverted>
